@@ -4,7 +4,8 @@
     <string name="false_button">False</string>
     <string name="correct_toast">Correct!</string>
     <string name="false_toast">Oops! It"'s incorrect!</string>
-    <string name="next_button">Next</string>
+    <string name="previous">Previous Button</string>
+    <string name="next">Next Button</string>
     <string name="question1">Mount Kilimanjaro is higher than Denali</string>
     <string name="question2">Memphis is the state capital of Tennessee</string>
     <string name="question3">The Maldives has the lowest high point of any country</string>
