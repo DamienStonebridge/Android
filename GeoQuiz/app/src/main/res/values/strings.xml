@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">GeoQuiz</string>
-    <string name="question_text">Narendra Modi is the Prime Minister of India</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="correct_toast">Correct!</string>
     <string name="false_toast">Oops! It"'s incorrect!</string>
+    <string name="next_button">Next</string>
+    <string name="question1">Mount Kilimanjaro is higher than Denali</string>
+    <string name="question2">Memphis is the state capital of Tennessee</string>
+    <string name="question3">The Maldives has the lowest high point of any country</string>
+    <string name="question4">The world"'s tallest waterfall is in Venezuela</string>
+    <string name="question5">The city of Utrecht is in Holland</string>
+    <string name="question6">Russia is the world"'s largest oil producer</string>
+    <string name="question7">Madrid is more easterly than London</string>
+    <string name="question8">The Nile River is more than double the length of the Volga</string>
+    <string name="question9">China borders the same number of countries as Russia</string>
+    <string name="question10">Shanghai has a greater population than Beijing</string>
+    <string name="question11">The currency of Switzerland is the Euro</string>
+    <string name="question12">Japan has the world"'s highest life expectancy</string>
 </resources>
