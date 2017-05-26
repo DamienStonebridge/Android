@@ -2,6 +2,7 @@ package apps.ginyu.geoquiz;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,10 @@ public class QuizActivity extends AppCompatActivity {
    private Button mFalseButton;
    private Button mNextButton;
    private TextView mQuestionTextView;
+
+   private static final String TAG = "QuizActivity";
+
+   private static final String KEY_INDEX = "index";
 
    private Question[] mQuestions = new Question[]{
       new Question(R.string.question1, false),
@@ -36,6 +41,10 @@ public class QuizActivity extends AppCompatActivity {
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_quiz);
+
+      Log.d(TAG, "onCreate(Bundle) called");
+
+      if(savedInstanceState != null) mCurrentIndex = savedInstanceState.getInt(KEY_INDEX);
 
       mQuestionTextView = (TextView) findViewById(R.id.question_textview);
       int question = mQuestions[mCurrentIndex].getTextResId();
@@ -67,6 +76,43 @@ public class QuizActivity extends AppCompatActivity {
             UpdateQuestion();
          }
       });
+   }
+
+   @Override
+   protected void onStart() {
+      super.onStart();
+      Log.d(TAG, "onStart() called");
+   }
+
+   @Override
+   protected void onResume() {
+      super.onResume();
+      Log.d(TAG, "onResume() called");
+   }
+
+   @Override
+   protected void onPause() {
+      super.onPause();
+      Log.d(TAG, "onPause() called");
+   }
+
+   @Override
+   protected void onStop() {
+      super.onStop();
+      Log.d(TAG, "onStop() called");
+   }
+
+   @Override
+   protected void onDestroy () {
+      super.onDestroy();
+      Log.d(TAG, "onDestroy() called");
+   }
+
+   @Override
+   public void onSaveInstanceState(Bundle savedInstanceState) {
+      super.onSaveInstanceState(savedInstanceState);
+      Log.i(TAG, "onSaveInstanceState");
+      savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
    }
 
    private void UpdateQuestion () {
