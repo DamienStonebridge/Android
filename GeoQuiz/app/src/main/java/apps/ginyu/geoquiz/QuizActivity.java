@@ -15,6 +15,7 @@ public class QuizActivity extends AppCompatActivity {
    private Button mFalseButton;
    private Button mNextButton;
    private TextView mQuestionTextView;
+   private Toast mToast;
 
    private static final String TAG = "QuizActivity";
 
@@ -36,13 +37,13 @@ public class QuizActivity extends AppCompatActivity {
    };
 
    private int mCurrentIndex = 0;
+   private int mAnsweredQuestions = 0;
+   private int mScore = 0;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_quiz);
-
-      Log.d(TAG, "onCreate(Bundle) called");
 
       if(savedInstanceState != null) mCurrentIndex = savedInstanceState.getInt(KEY_INDEX);
 
@@ -53,6 +54,12 @@ public class QuizActivity extends AppCompatActivity {
       mTrueButton = (Button) findViewById(R.id.true_button);
       mFalseButton = (Button) findViewById(R.id.false_button);
       mNextButton = (Button) findViewById(R.id.next_button);
+
+      if(mQuestions[mCurrentIndex].isAnswered()) {
+         mTrueButton.setEnabled(false);
+      }
+      else
+         mTrueButton.setEnabled(true);
 
       mTrueButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -73,45 +80,23 @@ public class QuizActivity extends AppCompatActivity {
          @Override
          public void onClick(View v) {
             mCurrentIndex = (mCurrentIndex + 1) % mQuestions.length;
+            if (mQuestions[mCurrentIndex].isAnswered()) {
+               mTrueButton.setEnabled(false);
+               mFalseButton.setEnabled(false);
+            }
+            else {
+               mTrueButton.setEnabled(true);
+               mFalseButton.setEnabled(true);
+            }
             UpdateQuestion();
+            if(mToast != null) mToast.cancel();
          }
       });
    }
 
    @Override
-   protected void onStart() {
-      super.onStart();
-      Log.d(TAG, "onStart() called");
-   }
-
-   @Override
-   protected void onResume() {
-      super.onResume();
-      Log.d(TAG, "onResume() called");
-   }
-
-   @Override
-   protected void onPause() {
-      super.onPause();
-      Log.d(TAG, "onPause() called");
-   }
-
-   @Override
-   protected void onStop() {
-      super.onStop();
-      Log.d(TAG, "onStop() called");
-   }
-
-   @Override
-   protected void onDestroy () {
-      super.onDestroy();
-      Log.d(TAG, "onDestroy() called");
-   }
-
-   @Override
    public void onSaveInstanceState(Bundle savedInstanceState) {
       super.onSaveInstanceState(savedInstanceState);
-      Log.i(TAG, "onSaveInstanceState");
       savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
    }
 
@@ -121,7 +106,23 @@ public class QuizActivity extends AppCompatActivity {
    }
 
    private void CheckAnswer (boolean result) {
-      int messageResId =  (mQuestions[mCurrentIndex].isAnswerTrue() == result) ? R.string.correct_toast : R.string.false_toast;
-      Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+      mAnsweredQuestions++;
+      int messageResId;
+      if(mQuestions[mCurrentIndex].isAnswerTrue() == result) {
+         messageResId = R.string.correct_toast;
+         mScore += 1;
+      }
+      else
+         messageResId = R.string.false_toast;
+      mQuestions[mCurrentIndex].setAnswered(true);
+      mTrueButton.setEnabled(false);
+      mFalseButton.setEnabled(false);
+      mToast = Toast.makeText(this, messageResId, Toast.LENGTH_SHORT);
+      mToast.show();
+      CharSequence cq = getString(R.string.result) + " " + (mScore * 100 / mQuestions.length);
+      if(mQuestions.length == mAnsweredQuestions) {
+         mToast.cancel();
+         Toast.makeText(this, cq, Toast.LENGTH_LONG).show();
+      }
    }
 }

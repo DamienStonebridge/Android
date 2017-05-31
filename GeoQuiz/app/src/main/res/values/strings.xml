@@ -17,4 +17,5 @@
     <string name="question10">Shanghai has a greater population than Beijing</string>
     <string name="question11">The currency of Switzerland is the Euro</string>
     <string name="question12">Japan has the world"'s highest life expectancy</string>
+    <string name="result">Your percentage score is</string>
 </resources>
