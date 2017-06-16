@@ -2,9 +2,14 @@
     <string name="app_name">GeoQuiz</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
+    <string name="cheater_toast">It is unfair. You cheated!</string>
     <string name="correct_toast">Correct!</string>
     <string name="false_toast">Oops! It"'s incorrect!</string>
     <string name="next_button">Next</string>
+    <string name="cheat_button">Cheat!</string>
+    <string name="cheat_toast">Cheating is wrong</string>
+    <string name="show_button">Show answer</string>
+    <string name="warning">You sure you want to do this?</string>
     <string name="question1">Mount Kilimanjaro is higher than Denali</string>
     <string name="question2">Memphis is the state capital of Tennessee</string>
     <string name="question3">The Maldives has the lowest high point of any country</string>
